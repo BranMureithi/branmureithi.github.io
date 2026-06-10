@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bran Mureithi | Customer & Technical Support</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #1a1a1a;
+    --muted: #555;
+    --light: #888;
+    --border: #e0e0e0;
+    --bg: #fafafa;
+    --white: #fff;
+    --accent: #1a56db;
+    --accent-light: #eef2ff;
+    --green: #0a6640;
+    --green-bg: #e6f4ec;
+    --tag-bg: #f0f0f0;
+    --tag-text: #333;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--black);
+    background: var(--white);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-name { font-weight: 600; font-size: 15px; letter-spacing: -0.2px; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted);
+    font-size: 14px; transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--black); }
+  .nav-cta {
+    background: var(--black); color: var(--white);
+    padding: 7px 18px; border-radius: 6px;
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: background 0.15s;
+  }
+  .nav-cta:hover { background: #333; }
+
+  /* SECTIONS */
+  section { padding: 72px 0; }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+  .section-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  /* HERO */
+  #hero {
+    padding: 88px 0 72px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-available {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green-bg); color: var(--green);
+    padding: 5px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 500; margin-bottom: 24px;
+  }
+  .hero-available span.dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green); display: inline-block;
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.5px; margin-bottom: 20px;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .hero-sub {
+    font-size: 17px; color: var(--muted);
+    max-width: 580px; line-height: 1.65; margin-bottom: 32px;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--black); color: var(--white);
+    padding: 11px 24px; border-radius: 8px;
+    text-decoration: none; font-size: 15px; font-weight: 500;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: #333; }
+  .btn-secondary {
+    color: var(--black); border: 1.5px solid var(--border);
+    padding: 10px 22px; border-radius: 8px;
+    text-decoration: none; font-size: 15px; font-weight: 500;
+    transition: border-color 0.15s;
+  }
+  .btn-secondary:hover { border-color: #999; }
+
+  /* STATS */
+  .stats-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; margin-top: 48px;
+  }
+  .stat {
+    background: var(--white); padding: 20px 24px;
+  }
+  .stat-num { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+  /* SKILLS */
+  #skills { border-bottom: 1px solid var(--border); }
+  h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 8px; }
+  .section-intro { color: var(--muted); margin-bottom: 36px; max-width: 560px; }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .skill-card {
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px; background: var(--white);
+    transition: border-color 0.15s;
+  }
+  .skill-card:hover { border-color: #bbb; }
+  .skill-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--accent-light); display: flex;
+    align-items: center; justify-content: center;
+    margin-bottom: 12px; font-size: 18px;
+  }
+  .skill-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .skill-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* EXPERIENCE */
+  #experience { border-bottom: 1px solid var(--border); }
+  .exp-list { display: flex; flex-direction: column; gap: 32px; }
+  .exp-item { display: grid; grid-template-columns: 1fr 3fr; gap: 24px; }
+  .exp-meta { padding-top: 2px; }
+  .exp-date { font-size: 12px; color: var(--light); font-weight: 500; margin-bottom: 4px; }
+  .exp-org {
+    font-size: 13px; color: var(--muted);
+    background: var(--tag-bg); padding: 3px 10px;
+    border-radius: 4px; display: inline-block;
+  }
+  .exp-role { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .exp-bullets { list-style: none; padding: 0; }
+  .exp-bullets li {
+    font-size: 14px; color: var(--muted); padding: 3px 0 3px 16px;
+    position: relative; line-height: 1.55;
+  }
+  .exp-bullets li::before {
+    content: '–'; position: absolute; left: 0; color: var(--light);
+  }
+
+  /* TOOLS */
+  #tools { border-bottom: 1px solid var(--border); }
+  .tools-grid {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px;
+  }
+  .tool-tag {
+    background: var(--tag-bg); color: var(--tag-text);
+    padding: 6px 14px; border-radius: 6px;
+    font-size: 13px; font-weight: 500;
+  }
+
+  /* CERTS */
+  #certs { border-bottom: 1px solid var(--border); }
+  .cert-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .cert-card {
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .cert-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .cert-issuer { font-size: 13px; color: var(--muted); }
+
+  /* CONTACT */
+  #contact { background: var(--bg); }
+  .contact-card {
+    border: 1px solid var(--border); border-radius: 14px;
+    background: var(--white); padding: 40px;
+    text-align: center;
+  }
+  .contact-card h2 { margin-bottom: 12px; }
+  .contact-card p { color: var(--muted); max-width: 440px; margin: 0 auto 28px; }
+  .contact-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 8px;
+    border: 1.5px solid var(--border); border-radius: 8px;
+    padding: 10px 20px; text-decoration: none; color: var(--black);
+    font-size: 14px; font-weight: 500; transition: border-color 0.15s;
+  }
+  .contact-link:hover { border-color: #888; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border); padding: 24px 2rem;
+    text-align: center; font-size: 13px; color: var(--light);
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .exp-item { grid-template-columns: 1fr; gap: 6px; }
+    .stats-row { grid-template-columns: 1fr; }
+    .contact-card { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Bran Mureithi</span>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#tools">Tools</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="mailto:branwambugu95@gmail.com" class="nav-cta">Hire me</a>
+</nav>
+
+<section id="hero">
+  <div class="container">
+    <div class="hero-available">
+      <span class="dot"></span>
+      Available for remote roles
+    </div>
+    <h1>Customer &amp; technical support<br>professional based in <em>Kenya</em></h1>
+    <p class="hero-sub">
+      I help teams deliver fast, clear, and empathetic support across email, chat, and ticketing platforms. Strong communicator, detail-oriented, and experienced handling high-volume service environments.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:branwambugu95@gmail.com" class="btn-primary">Get in touch</a>
+      <a href="#experience" class="btn-secondary">View experience</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years in service roles</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Multi-channel</div>
+        <div class="stat-label">Email, chat, phone, in-person</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">SLA-aware</div>
+        <div class="stat-label">Protocol &amp; documentation driven</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Core competencies</p>
+    <h2>What I bring to the role</h2>
+    <p class="section-intro">Built through real service environments — not just theory.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">💬</div>
+        <div class="skill-title">Customer communication</div>
+        <div class="skill-desc">Clear, empathetic responses across email and chat. Comfortable with native English speakers and international clients.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎫</div>
+        <div class="skill-title">Ticket &amp; case management</div>
+        <div class="skill-desc">Experienced handling high volumes of support requests, prioritising by urgency, and meeting resolution SLAs.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📋</div>
+        <div class="skill-title">Documentation &amp; SOPs</div>
+        <div class="skill-desc">Built knowledge bases, FAQs, and internal procedures from scratch in fast-paced environments.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔧</div>
+        <div class="skill-title">Basic IT &amp; troubleshooting</div>
+        <div class="skill-desc">Comfortable guiding users through software issues, account setup, data entry, and system-level basic troubleshooting.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-title">Data collection &amp; tools</div>
+        <div class="skill-desc">Certified in KoboToolbox (Essentials + Data Collection Foundations). Field data collection experience across Kenya.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔄</div>
+        <div class="skill-title">Escalation &amp; triage</div>
+        <div class="skill-desc">Able to identify when issues require escalation and communicate clearly to both users and technical teams.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Work history</p>
+    <h2>Experience</h2>
+    <p class="section-intro">Roles where I've directly served clients, managed information, and maintained high service standards.</p>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">2023 – Present</div>
+          <div class="exp-org">Nakuru Specialist Hospital</div>
+        </div>
+        <div>
+          <div class="exp-role">Nutritionist &amp; Patient Services</div>
+          <ul class="exp-bullets">
+            <li>Built clinical SOPs and documentation procedures from scratch as the sole operator</li>
+            <li>Handled high-volume patient queries daily, providing clear guidance under time pressure</li>
+            <li>Maintained accurate records, updated knowledge bases, and ensured protocol compliance</li>
+            <li>Coordinated with medical teams, translating technical information for non-technical audiences</li>
+            <li>Managed escalations by triaging patient issues and routing complex cases appropriately</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">2022 – 2023</div>
+          <div class="exp-org">EAICS</div>
+        </div>
+        <div>
+          <div class="exp-role">Lecturer &amp; Academic Support</div>
+          <ul class="exp-bullets">
+            <li>Communicated complex technical content clearly to diverse student audiences</li>
+            <li>Developed structured learning materials and maintained updated documentation</li>
+            <li>Responded to student queries efficiently, managing multiple issues simultaneously</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">2021 – 2022</div>
+          <div class="exp-org">Nutrition Voices of Kenya</div>
+        </div>
+        <div>
+          <div class="exp-role">Nutrition Consultant &amp; Field Coordinator</div>
+          <ul class="exp-bullets">
+            <li>Conducted community outreach and direct client engagement across multiple counties</li>
+            <li>Used KoboToolbox for structured data collection and reporting</li>
+            <li>Liaised with clients, stakeholders, and internal teams to deliver outcomes on schedule</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="container">
+    <p class="section-label">Platforms &amp; tools</p>
+    <h2>Tools I work with</h2>
+    <p class="section-intro">Familiar with the tools used in remote support and operations environments.</p>
+    <div class="tools-grid">
+      <span class="tool-tag">KoboToolbox</span>
+      <span class="tool-tag">Google Workspace</span>
+      <span class="tool-tag">Microsoft Office</span>
+      <span class="tool-tag">Email support</span>
+      <span class="tool-tag">Live chat</span>
+      <span class="tool-tag">Zendesk (learning)</span>
+      <span class="tool-tag">HubSpot Service Hub (learning)</span>
+      <span class="tool-tag">Slack</span>
+      <span class="tool-tag">Notion</span>
+      <span class="tool-tag">Knowledge base writing</span>
+      <span class="tool-tag">SOP documentation</span>
+      <span class="tool-tag">Data entry &amp; clean-up</span>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="container">
+    <p class="section-label">Certifications</p>
+    <h2>Credentials</h2>
+    <p class="section-intro" style="margin-bottom: 28px;">Verified training in data tools and professional operations.</p>
+    <div class="cert-list">
+      <div class="cert-card">
+        <div class="cert-name">KoboToolbox Essentials</div>
+        <div class="cert-issuer">KoboToolbox / OCHA</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-name">Data Collection Foundations</div>
+        <div class="cert-issuer">KoboToolbox</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-name">BSc Human Nutrition &amp; Dietetics</div>
+        <div class="cert-issuer">Kabarak University (in progress)</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-name">Diploma, Community Nutrition</div>
+        <div class="cert-issuer">Kenya Medical Training College</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-card">
+      <p class="section-label" style="text-align:center;">Let's connect</p>
+      <h2>Open to remote opportunities</h2>
+      <p>Based in Nakuru, Kenya. Available full-time for remote customer support, technical support, and operations roles.</p>
+      <div class="contact-links">
+        <a href="mailto:branwambugu95@gmail.com" class="contact-link">
+          ✉ Email me
+        </a>
+        <a href="https://wa.me/254718281116" class="contact-link">
+          📱 WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Bran Mureithi &nbsp;·&nbsp; Nakuru, Kenya &nbsp;·&nbsp; Open to remote work worldwide
+  </div>
+</footer>
+
+</body>
+</html>
